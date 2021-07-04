@@ -1,0 +1,15 @@
+.star svg {
+	margin-right: 5px;
+}
+
+.filled svg {
+	fill: var(--primary);
+}
+
+.star.highlight:hover svg {
+	fill: var(--primary-hover);
+}
+
+.editable {
+	cursor: pointer;
+}
