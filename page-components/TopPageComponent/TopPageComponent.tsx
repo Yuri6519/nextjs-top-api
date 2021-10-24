@@ -2,7 +2,8 @@
 import { TopPageComponentProps } from './TopPageComponent.props';
 import styles from './TopPageComponent.module.css';
 import React from 'react';
-import { HTag, Tag } from '../../components';
+import { HhData, HTag, Tag } from '../../components';
+import { TopLevelCategory } from '../../interfaces/page.interface';
 
 export const TopPageComponent = ({
 	firstCategory,
@@ -26,8 +27,10 @@ export const TopPageComponent = ({
 				<Tag size='middle' color='red' href='https://hh.ru/'>
 					hh.ru
 				</Tag>
-				<div className={styles.hh}> </div>
 			</div>
+			{firstCategory === TopLevelCategory.Courses && (
+				<HhData {...page.hh} />
+			)}
 		</div>
 	);
 };
