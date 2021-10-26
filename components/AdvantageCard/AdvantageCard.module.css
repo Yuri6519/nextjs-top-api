@@ -1,0 +1,19 @@
+.card {
+	display: grid;
+	gap: 10px;
+}
+
+.title {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 50px 1fr;
+	gap: 40px;
+}
+
+.text {
+	margin-left: 25px;
+
+	padding-left: 65px;
+
+	border-left: 1px solid var(--silver);
+}

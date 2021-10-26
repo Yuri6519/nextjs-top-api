@@ -1,0 +1,11 @@
+.adv {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 30px;
+
+	margin-bottom: 30px;
+}
+
+.text {
+	padding-left: 25px;
+}
