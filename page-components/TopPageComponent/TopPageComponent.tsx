@@ -2,9 +2,9 @@
 import { TopPageComponentProps } from './TopPageComponent.props';
 import styles from './TopPageComponent.module.css';
 import React from 'react';
-import { HhData, HTag, Tag } from '../../components';
+import { Advantages, HhData, HTag, PTag, Tag } from '../../components';
 import { TopLevelCategory } from '../../interfaces/page.interface';
-import { AdvantageData } from '../../components/AdvantageData/AdvantageData';
+//import { AdvantageData } from '../../components/AdvantageData/AdvantageData';
 
 export const TopPageComponent = ({
 	firstCategory,
@@ -32,11 +32,34 @@ export const TopPageComponent = ({
 				</Tag>
 			</div>
 
-			{firstCategory === TopLevelCategory.Courses && (
+			{firstCategory === TopLevelCategory.Courses && page.hh && (
 				<HhData {...page.hh} />
 			)}
 
-			<HTag tag='h2'>Преимущества</HTag>
+			{page.advantages && page.advantages.length > 0 && (
+				<>
+					<HTag tag='h2'>Преимущества</HTag>
+					<Advantages advantages={page.advantages} />
+				</>
+			)}
+
+			{page.seoText && (
+				<div
+					className={styles.seo}
+					dangerouslySetInnerHTML={{ __html: page.seoText }}
+				/>
+			)}
+
+			<HTag tag='h2'>Получаемые навыки</HTag>
+
+			{page.tags.map((t, i) => (
+				<Tag key={i} color='primary'>
+					{t}
+				</Tag>
+			))}
+
+			{/* My decission */}
+			{/* <HTag tag='h2'>Преимущества</HTag>
 
 			<AdvantageData advantages={page.advantages}>
 				При завершении очередного проекта над графикой, специалист
@@ -44,9 +67,16 @@ export const TopPageComponent = ({
 				профессиональных дизайнеров заключается в том, что они гибкие.
 				Сегодня разрабатывается логотип новой компании, а завтра вполне
 				можно переключиться на иллюстрацию культовой книги.
-			</AdvantageData>
+			</AdvantageData> */}
 
+			{/* My decission */}
+			{/* 
 			<HTag tag='h2'>Получаемые навыки</HTag>
+			<Tag color='primary'>Работа в Photoshop</Tag>
+			<Tag color='primary'>Подготовка макетов</Tag>
+			<Tag color='primary'>Графический дизайн</Tag>
+			<Tag color='primary'>Web дизайн</Tag>
+			<Tag color='primary'>Дизайн сайтов</Tag> */}
 		</div>
 	);
 };

@@ -7,21 +7,21 @@ export const AdvantageData = ({
 	advantages,
 	children,
 }: AdvantageDataProps): JSX.Element => {
-	return (
-		advantages && (
-			<div className={styles.adv}>
-				{advantages.map((adv) => (
-					<AdvantageCard
-						key={adv._id}
-						title={adv.title}
-						text={adv.description}
-					/>
-				))}
+	return advantages ? (
+		<div className={styles.adv}>
+			{advantages.map((adv) => (
+				<AdvantageCard
+					key={adv._id}
+					title={adv.title}
+					text={adv.description}
+				/>
+			))}
 
-				<PTag className={styles.text} size='large'>
-					{children}
-				</PTag>
-			</div>
-		)
+			<PTag className={styles.text} size='large'>
+				{children}
+			</PTag>
+		</div>
+	) : (
+		<></>
 	);
 };

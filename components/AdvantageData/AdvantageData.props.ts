@@ -2,6 +2,6 @@ import { ReactNode } from 'react';
 import { TopPageAdvantage } from '../../interfaces/page.interface';
 
 export interface AdvantageDataProps {
-	advantages: TopPageAdvantage[];
+	advantages?: TopPageAdvantage[];
 	children: ReactNode;
 }
