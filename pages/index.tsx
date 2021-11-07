@@ -82,9 +82,7 @@ function Home({ firstCategory, menu }: HomeProps): JSX.Element {
 
 			<Input placeholder='Имя' />
 
-			<div>
-				<Textarea placeholder='Текст отзыва' />
-			</div>
+			<Textarea placeholder='Текст отзыва' />
 
 			<ul>
 				<b>Категория:</b> {firstCategory}
