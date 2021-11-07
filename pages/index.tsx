@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
-import { useState } from 'react';
-import { HTag, Raiting, Tag } from '../components';
+import React, { useState } from 'react';
+import { HTag, Input, Raiting, Tag, Textarea } from '../components';
 import { Button } from '../components';
 import { PTag } from '../components';
 import { WithLayout } from '../layout/Layout';
@@ -79,6 +79,12 @@ function Home({ firstCategory, menu }: HomeProps): JSX.Element {
 			<Tag color='primary'>Дизайн сайтов</Tag>
 
 			<Raiting raiting={raiting} isEditable setRaiting={setRaiting} />
+
+			<Input placeholder='Имя' />
+
+			<div>
+				<Textarea placeholder='Текст отзыва' />
+			</div>
 
 			<ul>
 				<b>Категория:</b> {firstCategory}
