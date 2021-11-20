@@ -3,15 +3,24 @@ import { ProductProps } from './Product.props';
 import cn from 'classnames';
 import styles from './Product.module.css';
 import { Button, Card, Divider, Raiting, Tag } from '..';
-import { priceRu } from '../../helpers/helpers';
+import { declOfNum, /*getDeclination,*/ priceRu } from '../../helpers/helpers';
+import Image from 'next/image';
 
 export const Product = ({ product }: ProductProps): JSX.Element => {
+	//** MOCK */
+	product.disadvantages =
+		product.price <= 50000
+			? ''
+			: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error enim, labore recusandae magni corporis est laborum quidem earum incidunt similique voluptatum nesciunt quam eligendi. Architecto magnam aliquam facilis hic ratione!';
+
 	return (
 		<Card className={styles.product}>
 			<div className={styles.logo}>
-				<img
+				<Image
 					src={`${process.env.NEXT_PUBLIC_DOMAIN}${product.image}`}
 					alt={product.image}
+					height={70}
+					width={70}
 				/>
 			</div>
 			<div className={styles.title}>{product.title}</div>
@@ -40,22 +49,46 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 			<div className={styles.priceTitle}>цена</div>
 			<div className={styles.creitTitle}>в кредит</div>
 			<div className={styles.rateTitle}>
-				{product.reviewCount}&nbsp;отзывов
+				{product.reviewCount}
+				{/* &nbsp;
+				{getDeclination(product.reviewCount, [
+					'отзыв',
+					'отзыва',
+					'отзывов',
+				])} */}
+				&nbsp;
+				{declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
 			</div>
 
 			<Divider className={styles.hr} />
 
 			<div className={styles.description}>{product.description}</div>
-			<div className={styles.feature}>фитчи</div>
+			<div className={styles.feature}>
+				{product.characteristics.map((ch) => (
+					<div key={ch.name} className={styles.characteristics}>
+						<span className={styles.characteristicsName}>
+							{ch.name}
+						</span>
+						<span className={styles.characteristicsDots} />
+						<span className={styles.characteristicsValue}>
+							{ch.value}
+						</span>
+					</div>
+				))}
+			</div>
 			<div className={styles.advBlock}>
-				<div className={styles.advantages}>
-					<div>Преимущества</div>
-					<div>{product.advantages}</div>
-				</div>
-				<div className={styles.disadvantages}>
-					<div>Недостатки</div>
-					<div>{product.disadvantages}</div>
-				</div>
+				{product.advantages && (
+					<div className={styles.advantages}>
+						<div className={styles.advTitle}>Преимущества</div>
+						<div>{product.advantages}</div>
+					</div>
+				)}
+				{product.disadvantages && (
+					<div className={styles.disadvantages}>
+						<div className={styles.advTitle}>Недостатки</div>
+						<div>{product.disadvantages}</div>
+					</div>
+				)}
 			</div>
 			<Divider className={styles.hr} />
 			<div className={styles.actions}>

@@ -36,3 +36,43 @@ export const priceSepr = (price: number): string =>
 	price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
 export const priceRu = (price: number): string => priceSepr(price).concat(' ₽');
+
+//my one
+export const getDeclination = (num: number, templates: string[]): string => {
+	/**
+		1 - отзыв
+		2-4 - отзыва
+		5-9 - отзывов
+		0, 10-20 - отзывов
+	*/
+
+	if ((num >= 11 && num <= 19) || (num % 100 >= 11 && num % 100 <= 19)) {
+		return templates[2];
+	}
+
+	if (num % 10 === 1) {
+		return templates[0];
+	}
+
+	if (num % 10 >= 2 && num % 10 <= 4) {
+		return templates[1];
+	}
+
+	// if (num % 10 === 0 || (num % 10 >= 5 && num % 10 <= 9)) {
+	// 	return templates[2];
+	// }
+
+	return templates[2];
+};
+
+export const declOfNum = (
+	number: number,
+	titles: [string, string, string]
+): string => {
+	const cases = [2, 0, 1, 1, 1, 2];
+	return titles[
+		number % 100 > 4 && number % 100 < 20
+			? 2
+			: cases[number % 10 < 5 ? number % 10 : 5]
+	];
+};
