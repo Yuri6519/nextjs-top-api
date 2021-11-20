@@ -35,10 +35,6 @@
 
 .hr {
 	grid-column: start / end;
-
-	width: 100%; /* it is mine */
-
-	border: 1px solid var(--gray-light);
 }
 
 .description,
@@ -52,4 +48,65 @@
 
 .advBlock {
 	grid-column: middle / end;
+}
+
+.logo > img {
+	border-radius: 5px;
+}
+
+.title {
+	align-self: flex-end;
+
+	font-size: 20px;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 27px;
+}
+
+.price {
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto auto;
+}
+
+.price,
+.credit {
+	align-self: flex-end;
+
+	font-size: 20px;
+	line-height: 27px;
+}
+
+.month {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.raiting {
+	align-self: flex-end;
+}
+
+.oldPrice {
+	margin-left: 5px;
+}
+
+.description {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.priceTitle,
+.creitTitle,
+.rateTitle {
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 19px;
+}
+
+.category {
+	margin-top: 7px;
+}
+
+.reviewButton {
+	margin-left: 20px;
 }

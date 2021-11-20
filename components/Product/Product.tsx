@@ -2,13 +2,10 @@ import React from 'react';
 import { ProductProps } from './Product.props';
 import cn from 'classnames';
 import styles from './Product.module.css';
-import { Button, Card, Raiting, Tag } from '..';
+import { Button, Card, Divider, Raiting, Tag } from '..';
+import { priceRu } from '../../helpers/helpers';
 
-export const Product = ({
-	product,
-	className,
-	...props
-}: ProductProps): JSX.Element => {
+export const Product = ({ product }: ProductProps): JSX.Element => {
 	return (
 		<Card className={styles.product}>
 			<div className={styles.logo}>
@@ -18,14 +15,26 @@ export const Product = ({
 				/>
 			</div>
 			<div className={styles.title}>{product.title}</div>
-			<div className={styles.price}>{product.price}</div>
-			<div className={styles.credit}>{product.credit}</div>
+			<div className={styles.price}>
+				<span>{priceRu(product.price)}</span>
+				{product.oldPrice && (
+					<Tag className={styles.oldPrice} color='green'>
+						{priceRu(product.price - product.oldPrice)}
+					</Tag>
+				)}
+			</div>
+			<div className={styles.credit}>
+				{priceRu(product.credit)}
+				<span className={styles.month}>/мес</span>
+			</div>
 			<div className={styles.raiting}>
 				<Raiting raiting={product.reviewAvg ?? product.initialRating} />
 			</div>
 			<div className={styles.tags}>
 				{product.categories.map((c) => (
-					<Tag>{c}</Tag>
+					<Tag key={c} className={styles.category}>
+						{c}
+					</Tag>
 				))}
 			</div>
 			<div className={styles.priceTitle}>цена</div>
@@ -33,7 +42,9 @@ export const Product = ({
 			<div className={styles.rateTitle}>
 				{product.reviewCount}&nbsp;отзывов
 			</div>
-			<hr className={styles.hr} />
+
+			<Divider className={styles.hr} />
+
 			<div className={styles.description}>{product.description}</div>
 			<div className={styles.feature}>фитчи</div>
 			<div className={styles.advBlock}>
@@ -46,10 +57,14 @@ export const Product = ({
 					<div>{product.disadvantages}</div>
 				</div>
 			</div>
-			<hr className={styles.hr} />
+			<Divider className={styles.hr} />
 			<div className={styles.actions}>
 				<Button appearance='primary'>Узнать подробнее</Button>
-				<Button appearance='ghost' arrow='right'>
+				<Button
+					appearance='ghost'
+					arrow='right'
+					className={styles.reviewButton}
+				>
 					Читать отзывы
 				</Button>
 			</div>
