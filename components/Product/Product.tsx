@@ -8,10 +8,10 @@ import Image from 'next/image';
 
 export const Product = ({ product }: ProductProps): JSX.Element => {
 	//** MOCK */
-	product.disadvantages =
-		product.price <= 50000
-			? ''
-			: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error enim, labore recusandae magni corporis est laborum quidem earum incidunt similique voluptatum nesciunt quam eligendi. Architecto magnam aliquam facilis hic ratione!';
+	// product.disadvantages =
+	// 	product.price <= 50000
+	// 		? ''
+	// 		: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error enim, labore recusandae magni corporis est laborum quidem earum incidunt similique voluptatum nesciunt quam eligendi. Architecto magnam aliquam facilis hic ratione!';
 
 	return (
 		<Card className={styles.product}>
@@ -47,7 +47,7 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 				))}
 			</div>
 			<div className={styles.priceTitle}>цена</div>
-			<div className={styles.creitTitle}>в кредит</div>
+			<div className={styles.creditTitle}>в кредит</div>
 			<div className={styles.rateTitle}>
 				{product.reviewCount}
 				{/* &nbsp;
@@ -90,7 +90,7 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 					</div>
 				)}
 			</div>
-			<Divider className={styles.hr} />
+			<Divider className={cn(styles.hr, styles.hr2)} />
 			<div className={styles.actions}>
 				<Button appearance='primary'>Узнать подробнее</Button>
 				<Button

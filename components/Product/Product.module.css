@@ -25,7 +25,7 @@
 }
 
 .credit,
-.creitTitle {
+.creditTitle {
 	grid-column: creditstrat / creditend;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .priceTitle,
-.creitTitle,
+.creditTitle,
 .rateTitle {
 	font-size: 14px;
 	font-weight: 300;
@@ -177,4 +177,157 @@
 	margin-bottom: 5px;
 
 	border-bottom: 1px dashed var(--silver-light);
+}
+
+@media screen and (max-width: 1330px) {
+	.product {
+		grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
+		grid-template-areas:
+			'logo . title title title title title'
+			'logo . tags tags tags tags tags'
+			'price price price . credit . raiting'
+			'priceTitle priceTitle priceTitle . creditTitle . rateTitle'
+			'hr hr hr hr hr hr hr'
+			'description description description description description description description'
+			'feature feature feature feature feature feature feature'
+			'advBlock advBlock advBlock advBlock advBlock advBlock advBlock'
+			'hr2 hr2 hr2 hr2 hr2 hr2 hr2'
+			'actions actions actions actions actions actions actions';
+	}
+
+	.logo {
+		grid-area: logo;
+	}
+
+	.title {
+		grid-area: title;
+	}
+
+	.tags {
+		grid-area: tags;
+
+		margin-bottom: 20px;
+	}
+
+	.price {
+		grid-area: price;
+	}
+
+	.credit {
+		grid-area: credit;
+	}
+
+	.raiting {
+		grid-area: raiting;
+	}
+
+	.priceTitle {
+		grid-area: priceTitle;
+	}
+
+	.creditTitle {
+		grid-area: creditTitle;
+	}
+
+	.rateTitle {
+		grid-area: rateTitle;
+	}
+
+	.hr {
+		grid-area: hr;
+	}
+
+	.description {
+		grid-area: description;
+	}
+
+	.feature {
+		grid-area: feature;
+
+		margin-bottom: 20px;
+	}
+
+	.advBlock {
+		grid-area: advBlock;
+	}
+
+	.hr2 {
+		grid-area: hr2;
+	}
+
+	.actions {
+		grid-area: actions;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.product {
+		grid-template-columns: 70px 30px 1fr;
+		grid-template-areas:
+			'logo . title'
+			'logo . tags'
+			'priceTitle . price'
+			'creditTitle . credit'
+			'rateTitle . raiting'
+			'hr hr hr'
+			'description description description'
+			'feature feature feature'
+			'advBlock advBlock advBlock'
+			'hr2 hr2 hr2'
+			'actions actions actions';
+	}
+
+	.price {
+		display: grid;
+		align-items: center;
+		grid-template-columns: auto 1fr;
+
+		margin-bottom: 10px;
+	}
+
+	.oldPrice {
+		justify-self: flex-start;
+	}
+
+	.credit {
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.product {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'logo'
+			'title'
+			'tags'
+			'price'
+			'priceTitle'
+			'credit'
+			'creditTitle'
+			'raiting'
+			'rateTitle'
+			'hr'
+			'description'
+			'feature'
+			'advBlock'
+			'hr2'
+			'actions';
+	}
+
+	.price {
+		margin-bottom: 0;
+	}
+
+	.credit {
+		margin-bottom: 0;
+	}
+
+	.priceTitle {
+		margin-bottom: 10px;
+	}
+
+	.creditTitle {
+		margin-bottom: 10px;
+	}
 }
