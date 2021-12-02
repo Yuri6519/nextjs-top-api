@@ -1,0 +1,99 @@
+.reviewForm {
+	display: grid;
+	grid-template-columns: [start] auto 1fr auto [end];
+
+	align-items: center;
+
+	/* justify-items: left; */
+
+	gap: 20px 30px;
+
+	font-size: 14px;
+	line-height: 24px;
+}
+
+.description,
+.submit {
+	grid-column: start / end;
+
+	/* my one */
+
+	/* width: 100%; */
+}
+
+.title {
+	justify-self: left;
+}
+
+.raiting {
+	display: grid;
+	grid-template-columns: auto 1fr;
+
+	align-items: center;
+	gap: 20px;
+}
+
+.submit > button {
+	margin-right: 15px;
+	padding-right: 35px;
+	padding-left: 35px;
+}
+
+.success {
+	position: relative;
+
+	margin-top: 20px;
+	padding: 20px;
+
+	border-radius: 5px;
+
+	background-color: var(--green-light);
+}
+
+.successTitle {
+	margin-bottom: 5px;
+
+	font-weight: bold;
+}
+
+.close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+
+	cursor: pointer;
+
+	transition: all 0.15s ease-in;
+}
+
+.close:hover {
+	transform: scale(1.5);
+}
+
+@media screen and (max-width: 1130px) {
+	.reviewForm {
+		grid-template-columns: [start] 1fr 1fr [end];
+	}
+
+	.raiting {
+		grid-column: start / end;
+	}
+
+	.title {
+		justify-self: normal;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.reviewForm {
+		grid-template-columns: [start] 1fr [end];
+	}
+
+	.raiting {
+		grid-column: start / end;
+	}
+
+	.title {
+		justify-self: normal;
+	}
+}
