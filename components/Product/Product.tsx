@@ -121,13 +121,15 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 					[styles.closed]: !IsReviewOpened,
 				})}
 			>
-				<>
-					{product.reviews.map((r) => {
-						return <Review key={r._id} review={r} />;
-					})}
-					<Divider />
-					<ReviewForm productId={product._id} />
-				</>
+				{product.reviews.map((r) => {
+					return (
+						<div key={r._id}>
+							<Review review={r} />
+							<Divider />
+						</div>
+					);
+				})}
+				<ReviewForm productId={product._id} />
 			</Card>
 		</>
 	);

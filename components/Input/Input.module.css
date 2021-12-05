@@ -16,3 +16,21 @@
 .input::placeholder {
 	color: var(--gray);
 }
+
+.inputWrapper {
+	position: relative;
+}
+
+.error {
+	border: 1px solid var(--red);
+}
+
+.errorMessage {
+	position: absolute;
+	top: -20px;
+	left: 0;
+
+	color: var(--red);
+
+	font-size: 12px;
+}
