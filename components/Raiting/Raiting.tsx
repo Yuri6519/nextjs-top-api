@@ -20,6 +20,7 @@ export const Raiting = forwardRef(
 			raiting = 0,
 			setRaiting,
 			className,
+			error,
 			...props
 		}: RaitingProps,
 		ref: ForwardedRef<HTMLDivElement>
@@ -44,7 +45,7 @@ export const Raiting = forwardRef(
 				(_: JSX.Element, i: number) => {
 					return (
 						<span
-							className={cn(styles.star, className, {
+							className={cn(styles.star, {
 								[styles.filled]: i < raiting,
 								[styles.editable]: isEditable,
 								[styles.highlight]: isEditable,
@@ -88,10 +89,19 @@ export const Raiting = forwardRef(
 		};
 
 		return (
-			<div ref={ref} {...props}>
+			<div
+				className={cn(styles.rating, className, {
+					[styles.error]: error,
+				})}
+				ref={ref}
+				{...props}
+			>
 				{currentRaiting.map((el: JSX.Element, i: number) => (
 					<span key={i}>{el}</span>
 				))}
+				{error && (
+					<span className={styles.errorMessage}>{error.message}</span>
+				)}
 			</div>
 		);
 	}
