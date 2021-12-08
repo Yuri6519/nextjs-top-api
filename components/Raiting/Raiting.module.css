@@ -12,6 +12,10 @@
 	fill: var(--primary);
 }
 
+.error svg {
+	stroke: var(--red);
+}
+
 .star.highlight:hover svg {
 	fill: var(--primary-hover);
 }
@@ -23,10 +27,6 @@
 .error {
 	border: 1px solid var(--red);
 	border-radius: 5px;
-}
-
-.error svg {
-	stroke: var(--red);
 }
 
 .errorMessage {

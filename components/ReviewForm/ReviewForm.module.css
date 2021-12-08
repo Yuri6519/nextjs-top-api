@@ -39,14 +39,16 @@
 	padding-left: 35px;
 }
 
-.success {
+.panel {
 	position: relative;
 
 	margin-top: 20px;
 	padding: 20px;
 
 	border-radius: 5px;
+}
 
+.success {
 	background-color: var(--green-light);
 }
 
@@ -68,6 +70,14 @@
 
 .close:hover {
 	transform: scale(1.5);
+}
+
+.error {
+	background-color: var(--red-light);
+}
+
+.errorClose path {
+	stroke: var(--red);
 }
 
 @media screen and (max-width: 1130px) {
