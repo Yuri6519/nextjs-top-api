@@ -49,7 +49,11 @@
 	line-height: 16px;
 }
 
-.secondLevelBlockOpened {
+.secondLevelBlock {
+	overflow: hidden;
+}
+
+/* .secondLevelBlockOpened {
 	margin-top: 10px;
 	margin-bottom: 20px;
 	padding-top: 3px;
@@ -59,7 +63,7 @@
 .secondBlock div:last-child .secondLevel + .secondLevelBlockOpened,
 .secondBlock div:last-child .secondLevel + .secondLevelBlockOpened a:last-child {
 	margin-bottom: 0;
-}
+} */
 
 .thirdLevel {
 	display: block;
