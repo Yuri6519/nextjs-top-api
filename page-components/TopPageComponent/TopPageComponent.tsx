@@ -47,47 +47,38 @@ export const TopPageComponent = ({
 				)}
 				<Sort sort={sorted} setSort={setSort} />
 			</div>
-
 			{sortedProducts &&
 				sortedProducts.map((p) => (
 					<Product layout key={p._id} product={p} />
 				))}
-
 			{/* sortedProducts.map((p) => <div key={p._id}>{p.title}</div>)} */}
-
 			<div className={styles.HhTitle}>
 				<HTag tag='h2'>Вакансии - {page.category}</HTag>
 				<Tag size='middle' color='red' href='https://hh.ru/'>
 					hh.ru
 				</Tag>
 			</div>
-
 			{firstCategory === TopLevelCategory.Courses && page.hh && (
 				<HhData {...page.hh} />
 			)}
-
 			{page.advantages && page.advantages.length > 0 && (
 				<>
 					<HTag tag='h2'>Преимущества</HTag>
 					<Advantages advantages={page.advantages} />
 				</>
 			)}
-
 			{page.seoText && (
 				<div
 					className={styles.seo}
 					dangerouslySetInnerHTML={{ __html: page.seoText }}
 				/>
 			)}
-
 			<HTag tag='h2'>Получаемые навыки</HTag>
-
 			{page.tags.map((t, i) => (
 				<Tag key={i} color='primary'>
 					{t}
 				</Tag>
 			))}
-
 			{/* My decission */}
 			{/* <HTag tag='h2'>Преимущества</HTag>
 
@@ -98,7 +89,6 @@ export const TopPageComponent = ({
 				Сегодня разрабатывается логотип новой компании, а завтра вполне
 				можно переключиться на иллюстрацию культовой книги.
 			</AdvantageData> */}
-
 			{/* My decission */}
 			{/* 
 			<HTag tag='h2'>Получаемые навыки</HTag>

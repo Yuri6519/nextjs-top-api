@@ -141,6 +141,7 @@ export const Product = motion(
 						</div>
 					</Card>
 					<Card
+						layout
 						color='blue'
 						className={cn(styles.reviews, {
 							[styles.opened]: IsReviewOpened,
