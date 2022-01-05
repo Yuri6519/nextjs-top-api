@@ -94,6 +94,23 @@
 	}
 }
 
+@media screen and (max-width: 1040px) {
+	.submit {
+		display: grid;
+		gap: 10px;
+	}
+
+	.submit > button {
+		justify-self: left;
+	}
+}
+
+@media screen and (max-width: 890px) and (min-width: 769px) {
+	.reviewForm {
+		grid-template-columns: [start] 1fr [end];
+	}
+}
+
 @media screen and (max-width: 640px) {
 	.reviewForm {
 		grid-template-columns: [start] 1fr [end];

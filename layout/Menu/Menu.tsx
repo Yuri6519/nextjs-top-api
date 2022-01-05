@@ -97,6 +97,7 @@ export const Menu = (): JSX.Element => {
 					return (
 						<div key={m._id.secondCategory}>
 							<div
+								tabIndex={0}
 								className={cn(styles.secondLevel)}
 								onClick={() =>
 									setMenueOpen(m._id.secondCategory)
