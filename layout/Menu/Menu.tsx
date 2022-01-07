@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { KeyboardEvent, useContext } from 'react';
 import cn from 'classnames';
 import styles from './Menu.module.css';
 import { AppContext, IAppContext } from '../../context/app.context';
@@ -35,7 +35,7 @@ export const Menu = (): JSX.Element => {
 	const variantsChildren = {
 		visible: {
 			opacity: 1,
-			height: 29,
+			height: 'auto',
 		},
 		hidden: {
 			opacity: 0,
@@ -49,6 +49,13 @@ export const Menu = (): JSX.Element => {
 			return m;
 		});
 		setMenu && setMenu(newMenu);
+	};
+
+	const setMenueOpenByKey = (key: KeyboardEvent, secondCategory: string) => {
+		if (key.code === 'Space' || key.code === 'Enter') {
+			key.preventDefault();
+			setMenueOpen(secondCategory);
+		}
 	};
 
 	const buildFirstLevel = (): React.ReactNode => {
@@ -102,6 +109,9 @@ export const Menu = (): JSX.Element => {
 								onClick={() =>
 									setMenueOpen(m._id.secondCategory)
 								}
+								onKeyDown={(key: KeyboardEvent) =>
+									setMenueOpenByKey(key, m._id.secondCategory)
+								}
 							>
 								{m._id.secondCategory}
 							</div>
@@ -114,7 +124,8 @@ export const Menu = (): JSX.Element => {
 							>
 								{buildThirdLevel(
 									m.pages,
-									firstLevelMenuItem.route
+									firstLevelMenuItem.route,
+									m.isOpen ?? false
 								)}
 							</motion.div>
 						</div>
@@ -126,7 +137,8 @@ export const Menu = (): JSX.Element => {
 
 	const buildThirdLevel = (
 		pages: PageItem[],
-		route: string
+		route: string,
+		isOpened: boolean
 	): React.ReactNode => {
 		return pages.map((page) => {
 			const routing = `/${route}/${page.alias}`;
@@ -138,6 +150,7 @@ export const Menu = (): JSX.Element => {
 								[styles.thirdLevelActive]:
 									router.asPath === routing,
 							})}
+							tabIndex={isOpened ? 0 : -1}
 						>
 							{page.category}
 						</a>

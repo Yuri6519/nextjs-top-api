@@ -21,11 +21,37 @@
 }
 
 .body {
+	outline: none;
 	grid-area: body;
 }
 
 .footer {
 	grid-area: footer;
+}
+
+.skipLink {
+	position: fixed;
+
+	top: 0;
+	left: 100px;
+
+	display: block;
+	overflow: hidden;
+
+	height: 0;
+	padding: 0;
+
+	color: var(--white);
+	background-color: var(--primary);
+}
+
+.displayed {
+	height: auto;
+	padding: 5px;
+
+	border: none;
+	border-radius: 5px;
+	outline: none;
 }
 
 @media screen and (max-width: 768px) {
