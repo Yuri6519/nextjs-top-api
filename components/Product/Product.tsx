@@ -1,4 +1,10 @@
-import React, { ForwardedRef, forwardRef, useState } from 'react';
+import React, {
+	ForwardedRef,
+	forwardRef,
+	KeyboardEvent,
+	useRef,
+	useState,
+} from 'react';
 import { ProductProps } from './Product.props';
 import cn from 'classnames';
 import styles from './Product.module.css';
@@ -22,8 +28,26 @@ export const Product = motion(
 			const [IsReviewOpened, setIsReviewOpened] =
 				useState<boolean>(false);
 
+			const reviewRef = useRef<HTMLDivElement>(null);
+
+			const scrolloReviewForm = () => {
+				setIsReviewOpened(true);
+				reviewRef.current?.focus();
+				reviewRef.current?.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start',
+				});
+			};
+
+			const scrolloReviewFormByKey = (key: KeyboardEvent) => {
+				if (key.code === 'Space' || key.code === 'Enter') {
+					key.preventDefault();
+					scrolloReviewForm();
+				}
+			};
+
 			return (
-				<div className={className} {...props} ref={ref}>
+				<div className={className} {...props} ref={ref} tabIndex={0}>
 					<Card className={styles.product}>
 						<div className={styles.logo}>
 							<Image
@@ -63,19 +87,31 @@ export const Product = motion(
 						<div className={styles.priceTitle}>цена</div>
 						<div className={styles.creditTitle}>в кредит</div>
 						<div className={styles.rateTitle}>
-							{product.reviewCount}
-							{/* &nbsp;
-				{getDeclination(product.reviewCount, [
-					'отзыв',
-					'отзыва',
-					'отзывов',
-				])} */}
-							&nbsp;
-							{declOfNum(product.reviewCount, [
-								'отзыв',
-								'отзыва',
-								'отзывов',
-							])}
+							<span
+								className={cn({
+									[styles.rateTitleLink]:
+										product.reviewCount > 0,
+								})}
+								tabIndex={product.reviewCount > 0 ? 0 : -1}
+								onClick={
+									product.reviewCount > 0
+										? scrolloReviewForm
+										: undefined
+								}
+								onKeyDown={
+									product.reviewCount > 0
+										? scrolloReviewFormByKey
+										: undefined
+								}
+							>
+								{product.reviewCount}
+								&nbsp;
+								{declOfNum(product.reviewCount, [
+									'отзыв',
+									'отзыва',
+									'отзывов',
+								])}
+							</span>
 						</div>
 
 						<Divider className={styles.hr} />
@@ -136,13 +172,17 @@ export const Product = motion(
 									setIsReviewOpened(!IsReviewOpened);
 								}}
 							>
-								Читать отзывы
+								{product.reviewCount > 0
+									? 'Читать отзывы'
+									: 'Добавить отзыв'}
 							</Button>
 						</div>
 					</Card>
 					<Card
 						layout
 						color='blue'
+						ref={reviewRef}
+						tabIndex={0}
 						className={cn(styles.reviews, {
 							[styles.opened]: IsReviewOpened,
 							[styles.closed]: !IsReviewOpened,
