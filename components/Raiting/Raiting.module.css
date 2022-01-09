@@ -4,8 +4,8 @@
 	justify-self: left;
 }
 
-.star svg {
-	margin-right: 5px;
+.star {
+	display: inline-block;
 }
 
 .filled svg {
@@ -14,6 +14,10 @@
 
 .error svg {
 	stroke: var(--red);
+}
+
+.star svg {
+	margin-right: 5px;
 }
 
 .star.highlight:hover svg {

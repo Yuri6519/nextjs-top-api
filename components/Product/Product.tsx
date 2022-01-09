@@ -182,7 +182,7 @@ export const Product = motion(
 						layout
 						color='blue'
 						ref={reviewRef}
-						tabIndex={0}
+						tabIndex={IsReviewOpened ? 0 : -1}
 						className={cn(styles.reviews, {
 							[styles.opened]: IsReviewOpened,
 							[styles.closed]: !IsReviewOpened,
@@ -196,7 +196,10 @@ export const Product = motion(
 								</div>
 							);
 						})}
-						<ReviewForm productId={product._id} />
+						<ReviewForm
+							productId={product._id}
+							isOpened={IsReviewOpened}
+						/>
 					</Card>
 				</div>
 			);
