@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { KeyboardEvent } from 'react';
 import { SortEnum, SortProps } from './Sort.props';
 import cn from 'classnames';
 import styles from './Sort.module.css';
@@ -10,6 +10,16 @@ export const Sort = ({
 	className,
 	...props
 }: SortProps): JSX.Element => {
+	const handleKeyDown = (
+		e: KeyboardEvent<HTMLSpanElement>,
+		sort: SortEnum
+	) => {
+		if (e.code === 'Enter' || e.code === 'Space') {
+			e.preventDefault();
+			setSort(sort);
+		}
+	};
+
 	return (
 		<div className={cn(styles.sort, className)} {...props}>
 			<span
@@ -19,7 +29,12 @@ export const Sort = ({
 				})}
 			>
 				<SortIcon className={styles.sortIcon} />
-				По рейтингу
+				<span
+					tabIndex={0}
+					onKeyDown={(e) => handleKeyDown(e, SortEnum.Raiting)}
+				>
+					По рейтингу
+				</span>
 			</span>
 			<span
 				onClick={() => setSort(SortEnum.Price)}
@@ -28,7 +43,12 @@ export const Sort = ({
 				})}
 			>
 				<SortIcon className={styles.sortIcon} />
-				По цене
+				<span
+					tabIndex={0}
+					onKeyDown={(e) => handleKeyDown(e, SortEnum.Price)}
+				>
+					По цене
+				</span>
 			</span>
 		</div>
 	);
