@@ -1,3 +1,12 @@
+.menu {
+	margin: 0;
+	padding: 0;
+}
+
+.menu li {
+	list-style-type: none;
+}
+
 .firstLevel {
 	display: grid;
 	align-items: center;
@@ -51,6 +60,8 @@
 
 .secondLevelBlock {
 	overflow: hidden;
+
+	padding-left: 0;
 }
 
 /* .secondLevelBlockOpened {

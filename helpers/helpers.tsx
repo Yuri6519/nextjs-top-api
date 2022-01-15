@@ -32,10 +32,10 @@ export const firstLevelMenu: FirstLevelMenuItem[] = [
 	},
 ];
 
-export const priceSepr = (price: number): string =>
+export const priceSepr = (price = 0): string =>
 	price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-export const priceRu = (price: number): string => priceSepr(price).concat(' ₽');
+export const priceRu = (price = 0): string => priceSepr(price).concat(' ₽');
 
 //my one
 export const getDeclination = (num: number, templates: string[]): string => {

@@ -60,10 +60,10 @@ export const Menu = (): JSX.Element => {
 
 	const buildFirstLevel = (): React.ReactNode => {
 		return (
-			<>
+			<ul className={styles.menu}>
 				{firstLevelMenu.map((menu) => {
 					return (
-						<div key={menu.route}>
+						<li key={menu.route}>
 							<Link href={`/${menu.route}`}>
 								<a>
 									<div
@@ -79,10 +79,10 @@ export const Menu = (): JSX.Element => {
 							</Link>
 							{menu.id === firstCategory &&
 								buildSecondLevel(menu)}
-						</div>
+						</li>
 					);
 				})}
-			</>
+			</ul>
 		);
 	};
 
@@ -92,7 +92,7 @@ export const Menu = (): JSX.Element => {
 		if (!serverMenu || serverMenu.length === 0) return <></>;
 
 		return (
-			<div className={styles.secondBlock}>
+			<ul className={styles.secondBlock}>
 				{serverMenu.map((m) => {
 					if (
 						m.pages
@@ -102,7 +102,7 @@ export const Menu = (): JSX.Element => {
 						m.isOpen = true;
 
 					return (
-						<div key={m._id.secondCategory}>
+						<li key={m._id.secondCategory}>
 							<div
 								tabIndex={0}
 								className={cn(styles.secondLevel)}
@@ -115,7 +115,7 @@ export const Menu = (): JSX.Element => {
 							>
 								{m._id.secondCategory}
 							</div>
-							<motion.div
+							<motion.ul
 								layout
 								className={cn(styles.secondLevelBlock)}
 								variants={variants}
@@ -127,11 +127,11 @@ export const Menu = (): JSX.Element => {
 									firstLevelMenuItem.route,
 									m.isOpen ?? false
 								)}
-							</motion.div>
-						</div>
+							</motion.ul>
+						</li>
 					);
 				})}
-			</div>
+			</ul>
 		);
 	};
 
@@ -143,7 +143,7 @@ export const Menu = (): JSX.Element => {
 		return pages.map((page) => {
 			const routing = `/${route}/${page.alias}`;
 			return (
-				<motion.div key={page._id} variants={variantsChildren}>
+				<motion.li key={page._id} variants={variantsChildren}>
 					<Link href={routing}>
 						<a
 							className={cn(styles.thirdLevel, {
@@ -155,7 +155,7 @@ export const Menu = (): JSX.Element => {
 							{page.category}
 						</a>
 					</Link>
-				</motion.div>
+				</motion.li>
 			);
 		});
 	};
